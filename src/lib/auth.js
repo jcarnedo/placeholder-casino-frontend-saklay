@@ -1,19 +1,21 @@
 import { setAuthToken } from "./api";
 
-const KEY = "sakla_token";
+const TOKEN_KEY = "sakla_token";
 
-export function saveToken(token) {
-  localStorage.setItem(KEY, token);
-  setAuthToken(token);
+export function setToken(token) {
+  localStorage.setItem(TOKEN_KEY, token);
+  setAuthToken(token); // ✅ add this
 }
 
-export function loadToken() {
-  const token = localStorage.getItem(KEY);
-  if (token) setAuthToken(token);
-  return token;
+export function getToken() {
+  return localStorage.getItem(TOKEN_KEY);
 }
 
 export function clearToken() {
-  localStorage.removeItem(KEY);
-  setAuthToken(null);
+  localStorage.removeItem(TOKEN_KEY);
+  setAuthToken(null); // ✅ add this
+}
+
+export function isLoggedIn() {
+  return !!getToken();
 }
